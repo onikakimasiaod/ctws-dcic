@@ -1,1 +1,22 @@
-<p>section-header works!</p>
+<header class="s-header" [ngClass]="{'s-header--is-open': isOpen, 'opaque': !isScroll && !isOpen && !isGuestInfo}">
+  <div *ngIf="isMobileHeader; else desktopHeader" class="s-header__container">
+    <button (click)="toggle()" class="s-header__burger">
+      <i *ngIf="!isOpen" class="fa-solid fa-bars"></i>
+      <i *ngIf="isOpen" class="fa-solid fa-xmark"></i>
+    </button>
+    <a href="/"><img [src]="LOGO" class="s-header__logo"></a>
+    <div *ngIf="isOpen" class="s-header__menu">
+      <a *ngFor="let item of HEADER" [href]="item.url" class="s-header__item">{{ item.name }}</a>
+    </div>
+  </div>
+  <ng-template #desktopHeader>
+    <div class="s-header__container s-header--desktop">
+      <div class="s-header__menu">
+        <div class="s-header__links">
+          <a *ngFor="let item of HEADER" [href]="item.url" class="s-header__item">{{ item.name }}</a>
+        </div>
+      </div>
+      <a href="/"><img [src]="LOGO" class="s-header__logo"></a>
+    </div>
+  </ng-template>
+</header>

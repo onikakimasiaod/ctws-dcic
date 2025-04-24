@@ -1,0 +1,116 @@
+.s-header {
+  $root-node: &;
+
+  font-family: "Public Sans", sans-serif;
+  position: fixed;
+  background-color: var(--primary);
+  width: 100%;
+  top: 0;
+  z-index: 100;
+  transition: background-color .5s ease-out;
+
+  &.opaque {
+      background-color: transparent;
+      animation-delay: 0s;
+      animation-direction: normal;
+      animation-duration: .5s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1;
+      animation-name: fadeIn;
+      animation-timing-function: ease-in-out;
+  }
+
+  &.opaque,
+  &--is-open {
+
+      #{$root-node}__container {
+          min-height: var(--s-header-opaque-height);
+      }
+
+      #{$root-node}__logo {
+          width: 6rem;
+      }
+  }
+
+  &__container {
+      padding-inline: 1.5rem;
+      display: flex;
+      align-items: center;
+      min-height: var(--s-header-mobile-height);
+      position: relative;
+      justify-content: space-between;
+  }
+
+  &--is-open {
+      background-color: var(--primary);
+      #{$root-node}__menu {
+          background-color: var(--primary);
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+          height: 100vh;
+          margin: 0 auto;
+          margin-top: var(--s-header-opaque-height);
+          padding: 1rem 0;
+          position: fixed;
+          left: 0;
+          top: 0;
+          gap: 1rem;
+          width: 100%;
+
+      }
+  }
+
+  &__logo {
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      filter: brightness(1000);
+      width: 4rem;
+  }
+
+  &__button {
+      background-color: white;
+      color: var(--grey);
+      padding: 1rem 1rem;
+      font-weight: 700;
+      cursor: pointer;
+  }
+
+  &__burger {
+      background-color: transparent;
+      border: none;
+      font-size: 2rem;
+      color: white;
+  }
+
+  &__item {
+      text-decoration: none;
+      // color: white
+  }
+
+  &__links {
+      display: flex;
+      gap: 1rem;
+  }
+
+  &--desktop {
+
+      &.s-header__container {
+          min-height: 6rem;
+      }
+
+      #{$root-node}__menu {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+      }
+
+      #{$root-node}__button {
+          padding: 1rem 3rem;
+      }
+  }
+}
